@@ -9,12 +9,12 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 numpy = "*"
-openai = "1.33.0"
 pytest = "*"
 requests = "*"
 tqdm = "*"
 pre-commit = "*"
 instructor = "*"
+litellm = "^1.49.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
