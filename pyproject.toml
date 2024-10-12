@@ -1,3 +1,28 @@
+[tool.poetry]
+name = "swarm"
+version = "0.1.0"
+description = "A lightweight, stateless multi-agent orchestration framework."
+authors = ["OpenAI Solutions"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "*"
+openai = "1.33.0"
+pytest = "*"
+requests = "*"
+tqdm = "*"
+pre-commit = "*"
+instructor = "*"
+
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.autopep8]
+max_line_length = 120
+ignore = ["E501", "W6"]
+in-place = true
+recursive = true
+aggressive = 3
