@@ -8,6 +8,7 @@ from typing import List, Callable, Union
 import litellm  # Replace OpenAI import with litellm
 
 litellm.modify_params = True
+litellm.drop_params = True
 
 
 # Local imports

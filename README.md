@@ -1,8 +1,14 @@
 ![Swarm Logo](assets/logo.png)
 
-# Swarm (experimental sample)
+# Open-Swarm (experimental sample)
 
-An ergonomic, lightweight multi-agent orchestration framework.
+An ergonomic, lightweight multi-agent orchestration framework based on OpenAI's [Swarm](https://github.com/openai/swarm).
+
+Instead of using OpenAI's API, it uses [Litellm](https://github.com/BerriAI/litellm) to support a wide variety of LLM providers.
+As a big advantage, this allows to run different models per agent using the `model` parameter. E.g. you can build a swarm that uses Claude 3.5 Sonnet for some agents and GPT-4o for others.
+
+Here's an example of a rap battle between Claude 3.5 Sonnet and GPT-4o: [rap_battle.py](examples/llms/rap_battle.py)
+
 
 > [!WARNING]
 > Swarm is currently an experimental sample framework intended to explore ergonomic interfaces for multi-agent systems. It is not intended to be used in production, and therefore has no official support. (This also means we will not be reviewing PRs or issues!)
@@ -11,16 +17,16 @@ An ergonomic, lightweight multi-agent orchestration framework.
 
 ## Install
 
-Requires Python 3.10+
+Requires Python 3.10+ and Poetry.
 
+After cloning the repo, install the dependencies:
 ```shell
-pip install git+ssh://git@github.com/openai/swarm.git
+poetry install
 ```
 
-or
-
+Then you can run the examples with `poetry run python examples/<example>/<example>.py`, e.g.:
 ```shell
-pip install git+https://github.com/openai/swarm.git
+poetry run python examples/claude/agent_handoff.py
 ```
 
 ## Usage
@@ -36,12 +42,14 @@ def transfer_to_agent_b():
 
 agent_a = Agent(
     name="Agent A",
+    model="claude-3-5-sonnet-20240620",
     instructions="You are a helpful agent.",
     functions=[transfer_to_agent_b],
 )
 
 agent_b = Agent(
     name="Agent B",
+    model="gpt-4o",
     instructions="Only speak in Haikus.",
 )
 
